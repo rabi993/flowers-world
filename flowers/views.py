@@ -23,3 +23,25 @@ class ReviewViewset(viewsets.ModelViewSet):
     
     queryset = models.Review.objects.all()
     serializer_class = serializers.ReviewSerializer
+
+
+# class ReviewFlowerIdViewset(viewsets.ModelViewSet):
+#     serializer_class = serializers.ReviewSerializer
+
+#     def get_queryset(self):
+#         flower_id = self.request.query_params.get('flower_id', None)
+#         if flower_id is not None:
+#             return models.Review.objects.filter(flower__id=flower_id)
+#         return models.Review.objects.all()
+
+# class ReviewFlowerIdViewset(viewsets.ModelViewSet):
+#     serializer_class = serializers.ReviewSerializer
+
+#     def get_queryset(self):
+#         # Default queryset (all reviews)
+#         queryset = models.Review.objects.all()
+#         flower_id = self.request.query_params.get('flower_id', None)
+#         if flower_id is not None:
+#             # Filter reviews by flower_id
+#             queryset = queryset.filter(flower__id=flower_id)
+#         return queryset

@@ -5,6 +5,8 @@ router = DefaultRouter()
 
 router.register('list', views.FlowerViewset) 
 router.register('reviews', views.ReviewViewset) 
+# # router.register('reviews/filter', views.ReviewFlowerIdViewset)
+# router.register('reviews/filter', views.ReviewFlowerIdViewset, basename='review_filter')
 
 urlpatterns = [
     path('', include(router.urls)),

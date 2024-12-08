@@ -1,56 +1,76 @@
-from rest_framework import generics, status
-from rest_framework.response import Response
-from rest_framework.permissions import IsAuthenticated, IsAdminUser
-from .models import Order
-from .serializers import OrderSerializer
-from buyers.models import Buyer
-from django.core.mail import send_mail
-
-from flowers.models import Flower
-
-class CreateOrderView(generics.CreateAPIView):
-    serializer_class = OrderSerializer
-    permission_classes = [IsAuthenticated]
-
-    def get_serializer_context(self):
-        context = super().get_serializer_context()
-        flower = Flower.objects.get(pk=self.kwargs['flower_id'])  # Get flower from URL
-        buyer = Buyer.objects.get(user=self.request.user)  # Get logged-in user as buyer
-        context.update({'flower': flower, 'buyer': buyer})
-        return context
-
-# View order history for a logged-in user
-class UserOrderHistoryView(generics.ListAPIView):
-    serializer_class = OrderSerializer
-    permission_classes = [IsAuthenticated]
-
+from django.shortcuts import render
+from rest_framework import viewsets
+from . import models
+from . import serializers
+# Create your views here.
+class OrderViewSet(viewsets.ModelViewSet):
+    queryset = models.Order.objects.all()
+    serializer_class =  serializers.OrderSerializer
+    
+    # custom query kortechi
     def get_queryset(self):
-        buyer = Buyer.objects.get(user=self.request.user)
-        return Order.objects.filter(buyer=buyer)
+        queryset = super().get_queryset() # 7 no line ke niye aslam ba buyer ke inherit korlam
+        print(self.request.query_params)
+        buyer_id = self.request.query_params.get('buyer_id')
+        if buyer_id:
+            queryset = queryset.filter(buyer_id=buyer_id)
+        return queryset
 
 
-# Admin view to manage orders
-class AdminOrderManagementView(generics.ListCreateAPIView):
-    serializer_class = OrderSerializer
-    permission_classes = [IsAdminUser]
 
-    def get_queryset(self):
-        return Order.objects.all()
+# from rest_framework import generics, status
+# from rest_framework.response import Response
+# from rest_framework.permissions import IsAuthenticated, IsAdminUser
+# from .models import Order
+# from .serializers import OrderSerializer
+# from buyers.models import Buyer
+# from django.core.mail import send_mail
 
-# Update order status (admin only)
-class AdminUpdateOrderStatusView(generics.UpdateAPIView):
-    serializer_class = OrderSerializer
-    permission_classes = [IsAdminUser]
-    queryset = Order.objects.all()
+# from flowers.models import Flower
 
-    def perform_update(self, serializer):
-        instance = serializer.save()
-        if instance.status == 'completed':
-            # Send confirmation email to the user
-            send_mail(
-                'Order Confirmation',
-                f'Your order for {instance.flower.title} has been confirmed.',
-                'rabiulislam.170113@s.pust.ac.bd',  # From email
-                [instance.email],  # To email
-                fail_silently=False,
-            )
+# class CreateOrderView(generics.CreateAPIView):
+#     serializer_class = OrderSerializer
+#     permission_classes = [IsAuthenticated]
+
+#     def get_serializer_context(self):
+#         context = super().get_serializer_context()
+#         flower = Flower.objects.get(pk=self.kwargs['flower_id'])  # Get flower from URL
+#         buyer = Buyer.objects.get(user=self.request.user)  # Get logged-in user as buyer
+#         context.update({'flower': flower, 'buyer': buyer})
+#         return context
+
+# # View order history for a logged-in user
+# class UserOrderHistoryView(generics.ListAPIView):
+#     serializer_class = OrderSerializer
+#     permission_classes = [IsAuthenticated]
+
+#     def get_queryset(self):
+#         buyer = Buyer.objects.get(user=self.request.user)
+#         return Order.objects.filter(buyer=buyer)
+
+
+# # Admin view to manage orders
+# class AdminOrderManagementView(generics.ListCreateAPIView):
+#     serializer_class = OrderSerializer
+#     permission_classes = [IsAdminUser]
+
+#     def get_queryset(self):
+#         return Order.objects.all()
+
+# # Update order status (admin only)
+# class AdminUpdateOrderStatusView(generics.UpdateAPIView):
+#     serializer_class = OrderSerializer
+#     permission_classes = [IsAdminUser]
+#     queryset = Order.objects.all()
+
+#     def perform_update(self, serializer):
+#         instance = serializer.save()
+#         if instance.status == 'completed':
+#             # Send confirmation email to the user
+#             send_mail(
+#                 'Order Confirmation',
+#                 f'Your order for {instance.flower.title} has been confirmed.',
+#                 'rabiulislam.170113@s.pust.ac.bd',  # From email
+#                 [instance.email],  # To email
+#                 fail_silently=False,
+#             )
