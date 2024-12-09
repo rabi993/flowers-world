@@ -1,0 +1,36 @@
+API Flowers-World Project 
+
+all services  http://127.0.0.1:8000/services/
+service by service id http://127.0.0.1:8000/services/1/
+
+contact us all http://127.0.0.1:8000/contact_us/
+contact us by contact us  id http://127.0.0.1:8000/contact_us/1/
+
+Users all  http://127.0.0.1:8000/users/
+users by user id http://127.0.0.1:8000/users/1/
+
+all categories  http://127.0.0.1:8000/categories/
+category by category id http://127.0.0.1:8000/categories/1/
+
+all colors http://127.0.0.1:8000/colors/
+category by category id http://127.0.0.1:8000/colors/1/
+
+flowers list http://127.0.0.1:8000/flowers/list/
+flower by flower id http://127.0.0.1:8000/flowers/list/1
+
+reviews all http://127.0.0.1:8000/flowers/reviews/
+reviews by review id http://127.0.0.1:8000/flowers/reviews/1
+reviews by reviewer id  http://127.0.0.1:8000/flowers/reviews/?reviewer_id=1
+reviews by flower id http://127.0.0.1:8000/flowers/reviews/?flower_id=1
+reviews by reviewer id  &&  flower id http://127.0.0.1:8000/flowers/reviews/?reviewer_id=1&flower_id=3
+
+Orders:
+see all orders http://127.0.0.1:8000/orders/
+Filters based on both flower_id and buyer_id. http://127.0.0.1:8000/orders/?flower_id=1&buyer_id=1
+Filters based on flower_id only http://127.0.0.1:8000/orders/?flower_id=1
+Filters based on buyer_id only. http://127.0.0.1:8000/orders/?buyer_id=1
+
+Buyers  all  http://127.0.0.1:8000/buyers/list/
+Buyers  by buyer id http://127.0.0.1:8000/buyers/list/3/
+
+
