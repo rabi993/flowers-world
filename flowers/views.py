@@ -19,10 +19,33 @@ class FlowerViewset(viewsets.ModelViewSet):
     pagination_class = FlowerPagination
     search_fields = ['user__first_name', 'user__email', 'category__name', 'color__name']
     
-class ReviewViewset(viewsets.ModelViewSet):
+# class ReviewViewset(viewsets.ModelViewSet):
     
+#     queryset = models.Review.objects.all()
+#     serializer_class = serializers.ReviewSerializer
+
+
+from rest_framework.response import Response
+
+class ReviewViewset(viewsets.ModelViewSet):
     queryset = models.Review.objects.all()
     serializer_class = serializers.ReviewSerializer
+
+    def get_queryset(self):
+        """
+        Custom queryset to filter reviews based on reviewer_id and flower_id.
+        """
+        queryset = super().get_queryset()
+        reviewer_id = self.request.query_params.get('reviewer_id')
+        flower_id = self.request.query_params.get('flower_id')
+
+        if reviewer_id:
+            queryset = queryset.filter(reviewer_id=reviewer_id)
+        if flower_id:
+            queryset = queryset.filter(flower_id=flower_id)
+
+        return queryset
+    
 
 
 # class ReviewFlowerIdViewset(viewsets.ModelViewSet):
