@@ -22,15 +22,15 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-# SECRET_KEY = 'django-insecure-!jy57nxlyj_6av#0qt+5ly)m^v&(0sfn*6vi1*ii_wc**)k02h'
-SECRET_KEY = env("SECRET_KEY")
+SECRET_KEY = 'django-insecure-!jy57nxlyj_6av#0qt+5ly)m^v&(0sfn*6vi1*ii_wc**)k02h'
+# SECRET_KEY = env("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
 # ALLOWED_HOSTS = []
 ALLOWED_HOSTS = ["*"]
-CSRF_TRUSTED_ORIGINS = ['https://flower-world.onrender.com','https://*.127.0.0.1']
+CSRF_TRUSTED_ORIGINS = ['https://flower-world-p.onrender.com','https://*.127.0.0.1']
 
 
 # Application definition
@@ -66,7 +66,7 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'flowers_world.urls'
 CORS_ORIGIN_ALLOW_ALL = True
-CSRF_TRUSTED_ORIGINS = ['https://flower-world.onrender.com']
+CSRF_TRUSTED_ORIGINS = ['https://flower-world-p.onrender.com']
 
 TEMPLATES = [
     {
