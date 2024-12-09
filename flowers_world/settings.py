@@ -30,7 +30,7 @@ DEBUG = True
 
 # ALLOWED_HOSTS = []
 ALLOWED_HOSTS = ["*"]
-CSRF_TRUSTED_ORIGINS = ['https://flower-world-p.onrender.com','https://*.127.0.0.1']
+CSRF_TRUSTED_ORIGINS = ['https://flower-world.onrender.com','https://*.127.0.0.1']
 
 
 # Application definition
@@ -66,7 +66,7 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'flowers_world.urls'
 CORS_ORIGIN_ALLOW_ALL = True
-CSRF_TRUSTED_ORIGINS = ['https://flower-world-p.onrender.com']
+CSRF_TRUSTED_ORIGINS = ['https://flower-world.onrender.com']
 
 TEMPLATES = [
     {
