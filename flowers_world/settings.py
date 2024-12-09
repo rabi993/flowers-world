@@ -28,14 +28,16 @@ SECRET_KEY = 'django-insecure-!jy57nxlyj_6av#0qt+5ly)m^v&(0sfn*6vi1*ii_wc**)k02h
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+ALLOWED_HOSTS = ['127.0.0.1', '.vercel.app']
 # ALLOWED_HOSTS = []
-ALLOWED_HOSTS = ["*"]
+# ALLOWED_HOSTS = ["*"]
 CSRF_TRUSTED_ORIGINS = ['https://flower-world.onrender.com','https://*.127.0.0.1']
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    "whitenoise.runserver_nostatic",
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -56,6 +58,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -84,16 +87,26 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'flowers_world.wsgi.application'
+WSGI_APPLICATION = 'flowers_world.wsgi.app'
 
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'postgres',
+        'USER': 'postgres.ovqikiumrkzdkfsywpry',
+        'PASSWORD': 'NcoSDb3cJ3PIEBh3',
+        'HOST': 'aws-0-ap-southeast-1.pooler.supabase.com',
+        'PORT': '6543'
     }
 }
 
@@ -137,6 +150,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = 'static/'
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+
+
 
 MEDIA_URL = '/media/'
 

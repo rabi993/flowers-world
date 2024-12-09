@@ -1,0 +1,14 @@
+{ 
+    
+    "builds": [{
+        "src": "flowers_world/wsgi.py",
+        "use":"@vercel/python",
+        "config": { "maxLambdaSize": "15mb", "runtime": "python3.11.3" }
+    }],
+    "routes": [
+        {
+        "src": "/(.*)",
+        "dest": "flowers_world/wsgi.py"
+        }
+    ]
+}
