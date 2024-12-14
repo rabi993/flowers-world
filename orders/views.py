@@ -75,8 +75,8 @@ class OrderViewSet(viewsets.ModelViewSet):
         serializer.save(flower=flower, buyer=buyer)
 
         # Update flower stock
-        flower.available -= int(quantity)
-        flower.save()
+        # flower.available -= int(quantity)
+        # flower.save()
 
         headers = self.get_success_headers(serializer.data)
         return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)

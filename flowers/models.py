@@ -70,6 +70,26 @@ class Flower(models.Model):
     #         self.save()
 
 
+# STAR_CHOICES = [
+#     ('⭐', '⭐'),
+#     ('⭐⭐', '⭐⭐'),
+#     ('⭐⭐⭐', '⭐⭐⭐'),
+#     ('⭐⭐⭐⭐', '⭐⭐⭐⭐'),
+#     ('⭐⭐⭐⭐⭐', '⭐⭐⭐⭐⭐'),
+# ]
+# class Review(models.Model):
+#     reviewer = models.ForeignKey(User, on_delete = models.CASCADE)
+#     flower = models.ForeignKey(Flower, on_delete = models.CASCADE)
+#     body = models.TextField()
+#     created = models.DateTimeField(auto_now_add = True)
+#     rating = models.CharField(choices = STAR_CHOICES, max_length = 10)
+    
+#     def __str__(self):
+#         return f"Patient : {self.reviewer.user.first_name} ; Flower {self.flower.title}"
+#     class Meta:
+#         verbose_name_plural = "Reviews"
+
+
 STAR_CHOICES = [
     ('⭐', '⭐'),
     ('⭐⭐', '⭐⭐'),
@@ -77,19 +97,18 @@ STAR_CHOICES = [
     ('⭐⭐⭐⭐', '⭐⭐⭐⭐'),
     ('⭐⭐⭐⭐⭐', '⭐⭐⭐⭐⭐'),
 ]
+
 class Review(models.Model):
-    reviewer = models.ForeignKey(Buyer, on_delete = models.CASCADE)
-    flower = models.ForeignKey(Flower, on_delete = models.CASCADE)
+    reviewer = models.ForeignKey(User, on_delete=models.CASCADE)  # User is already the reviewer
+    flower = models.ForeignKey(Flower, on_delete=models.CASCADE)
     body = models.TextField()
-    created = models.DateTimeField(auto_now_add = True)
-    rating = models.CharField(choices = STAR_CHOICES, max_length = 10)
-    
+    created = models.DateTimeField(auto_now_add=True)
+    rating = models.CharField(choices=STAR_CHOICES, max_length=10)
+
     def __str__(self):
-        return f"Patient : {self.reviewer.user.first_name} ; Flower {self.flower.title}"
+        return f"Reviewer: {self.reviewer.first_name}; Flower: {self.flower.title}"  # Updated
+
     class Meta:
         verbose_name_plural = "Reviews"
-
-
-
 
 
