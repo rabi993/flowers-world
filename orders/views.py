@@ -7,18 +7,22 @@
 # http://127.0.0.1:8000/orders/?buyer_id=
 # Filters based on buyer_id only.
 
+from rest_framework.viewsets import ModelViewSet
+from .models import Order
+from .serializers import OrderSerializer
+
 
 from django.shortcuts import get_object_or_404
-from rest_framework import viewsets, status
+from rest_framework import  status
 from rest_framework.response import Response
-from . import models
-from . import serializers
+# from . import models
+# from . import serializers
 from flowers.models import Flower
 from buyers.models import Buyer
 
-class OrderViewSet(viewsets.ModelViewSet):
-    queryset = models.Order.objects.all()
-    serializer_class = serializers.OrderSerializer
+class OrderViewSet(ModelViewSet):
+    queryset = Order.objects.all()
+    serializer_class = OrderSerializer
 
     def get_queryset(self):
         """
