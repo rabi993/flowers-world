@@ -137,5 +137,18 @@ class Order(models.Model):
             # Save the order
             super().save(*args, **kwargs)
 
+    def delete(self, *args, **kwargs):
+            """
+            Override the delete method to restore the flower's available quantity.
+            """
+            # Restore the available quantity of the flower
+            self.flower.available += self.quantity
+            self.flower.save()
+
+            # Proceed with the default delete behavior
+            super().delete(*args, **kwargs)
+
+    
+
     def __str__(self):
             return f"Flower: {self.flower.title}, Buyer: {self.buyer.user.first_name}"

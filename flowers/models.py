@@ -6,15 +6,6 @@ from colors.models import Color
 
 from django.core.exceptions import ValidationError
 
-# class FlowerCategory(models.Model):
-#     flower = models.ForeignKey('Flower', on_delete=models.CASCADE)
-#     category = models.ForeignKey('Category', on_delete=models.CASCADE)
-
-#     class Meta:
-#         unique_together = ['flower', 'category']
-
-#     def __str__(self):
-#         return f"{self.flower.title} - {self.category.name}"
 
 
 class Flower(models.Model):
@@ -41,6 +32,15 @@ class Flower(models.Model):
         verbose_name_plural = "Flowers"
 
 
+# class FlowerCategory(models.Model):
+#     flower = models.ForeignKey('Flower', on_delete=models.CASCADE)
+#     category = models.ForeignKey('Category', on_delete=models.CASCADE)
+
+#     class Meta:
+#         unique_together = ['flower', 'category']
+
+#     def __str__(self):
+#         return f"{self.flower.title} - {self.category.name}"
 
 
 # # Create your models here.
