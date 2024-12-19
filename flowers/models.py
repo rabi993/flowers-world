@@ -9,7 +9,7 @@ from django.core.exceptions import ValidationError
 
 
 class Flower(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)  # Assuming a user can have multiple flowers
+    # user = models.ForeignKey(User, on_delete=models.CASCADE)  # Assuming a user can have multiple flowers
     title = models.CharField(max_length=50, unique=True)
     content = models.TextField()
     image = models.ImageField(upload_to="flowers/images/")

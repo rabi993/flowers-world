@@ -12,13 +12,14 @@ class FlowerPagination(pagination.PageNumberPagination):
     page_size_query_param = page_size
     max_page_size = 100
 
+# from rest_framework.permissions import IsAuthenticatedOrReadOnly
 class FlowerViewset(viewsets.ModelViewSet):
     queryset = models.Flower.objects.all()
     serializer_class = serializers.FlowerSerializer
     filter_backends = [filters.SearchFilter]
     pagination_class = FlowerPagination
     search_fields = ['user__first_name', 'user__email', 'category__name', 'color__name']
-    
+    # permission_classes = [IsAuthenticatedOrReadOnly]  
 # class ReviewViewset(viewsets.ModelViewSet):
     
 #     queryset = models.Review.objects.all()
