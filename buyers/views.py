@@ -86,3 +86,21 @@ class UserLogoutView(APIView):
          # return redirect('login')
         return Response({'success' : "logout successful"})
         
+# from rest_framework import generics
+# from . serializers import *
+# from . models import *
+
+# class ChangePassword(generics.GenericAPIView):
+#     serializer_class = ChangePasswordSerializer
+
+#     def put(self, request, id):
+#         password = request.data['password']
+#         new_password = request.data['new_password']
+
+#         obj = get_user_model().objects.get(pk=id)
+#         if not obj.check_password(raw_password=password):
+#             return Response({'error': 'password not match'}, status=400)
+#         else:
+#             obj.set_password(new_password)
+#             obj.save()
+#             return Response({'success': 'password changed successfully'}, status=200)

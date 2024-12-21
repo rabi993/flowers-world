@@ -10,4 +10,5 @@ urlpatterns = [
     path('login/', views.UserLoginApiView.as_view(), name='login'),
     path('logout/', views.UserLogoutView.as_view(), name='logout'),
     path('active/<uid64>/<token>/', views.activate, name = 'activate'),
+    # path('change_password/<int:id>/', views.ChangePassword.as_view(), name='change_password'), 
 ]
