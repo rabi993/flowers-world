@@ -34,7 +34,8 @@ class UserRegistrationApiView(APIView):
             uid = urlsafe_base64_encode(force_bytes(user.pk))
             print("uid ", uid)
             # confirm_link = f"https://flowers-world-kc1aq9fen-rabiuls-projects-ff75cd6d.vercel.app/buyers/active/{uid}/{token}"
-            confirm_link = f"https://127.0.0.1:8000/buyers/active/{uid}/{token}"
+            confirm_link = f"http://127.0.0.1:8000/buyers/active/{uid}/{token}"
+            
             email_subject = "Confirm Your Email"
             email_body = render_to_string('confirm_email.html', {'confirm_link' : confirm_link})
             
@@ -55,9 +56,9 @@ def activate(request, uid64, token):
     if user is not None and default_token_generator.check_token(user, token):
         user.is_active = True
         user.save()
-        return redirect('login')
+        return redirect('http://127.0.0.1:5501/login.html')
     else:
-        return redirect('register')
+        return redirect('http://127.0.0.1:5501/registration.html')
     
 
 class UserLoginApiView(APIView):
@@ -86,21 +87,30 @@ class UserLogoutView(APIView):
          # return redirect('login')
         return Response({'success' : "logout successful"})
         
-# from rest_framework import generics
-# from . serializers import *
-# from . models import *
 
-# class ChangePassword(generics.GenericAPIView):
-#     serializer_class = ChangePasswordSerializer
 
-#     def put(self, request, id):
-#         password = request.data['password']
-#         new_password = request.data['new_password']
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.response import Response
+from rest_framework.views import APIView
+from rest_framework import status
 
-#         obj = get_user_model().objects.get(pk=id)
-#         if not obj.check_password(raw_password=password):
-#             return Response({'error': 'password not match'}, status=400)
-#         else:
-#             obj.set_password(new_password)
-#             obj.save()
-#             return Response({'success': 'password changed successfully'}, status=200)
+class ChangePasswordApiView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request):
+        user = request.user
+        data = request.data
+
+        old_password = data.get('old_password')
+        new_password = data.get('new_password')
+        confirm_new_password = data.get('confirm_new_password')
+
+        if not user.check_password(old_password):
+            return Response({"error": "Old password is incorrect."}, status=status.HTTP_400_BAD_REQUEST)
+        
+        if new_password != confirm_new_password:
+            return Response({"error": "New passwords do not match."}, status=status.HTTP_400_BAD_REQUEST)
+        
+        user.set_password(new_password)
+        user.save()
+        return Response({"success": "Password changed successfully."}, status=status.HTTP_200_OK)

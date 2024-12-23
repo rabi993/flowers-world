@@ -33,6 +33,8 @@ from django.core.exceptions import ValidationError
 from django.utils.timezone import now
 from buyers.models import Buyer
 from flowers.models import Flower
+from django.core.mail import EmailMultiAlternatives
+from django.template.loader import render_to_string
 
 ORDER_STATUS = [
     ('Pending', 'Pending'),
@@ -134,8 +136,29 @@ class Order(models.Model):
             self.flower.available -= self.quantity
             self.flower.save()
 
+            is_new = self.pk is None  # Check if this is a new order
+            previous_status = None
+            if not is_new:
+                previous_status = Order.objects.get(pk=self.pk).order_status
+
             # Save the order
             super().save(*args, **kwargs)
+
+            if is_new or previous_status != self.order_status:
+                email_subject = f"Your Order Status: {self.order_status}"
+                email_body = render_to_string('admin_email.html', {
+                    'user': self.buyer.user,
+                    'order_id': self.id,
+                    'status': self.order_status,
+                })
+
+                email = EmailMultiAlternatives(
+                    email_subject,
+                    '',
+                    to=[self.buyer.user.email]
+                )
+                email.attach_alternative(email_body, "text/html")
+                email.send()
 
     def delete(self, *args, **kwargs):
             """

@@ -18,7 +18,7 @@ class FlowerViewset(viewsets.ModelViewSet):
     serializer_class = serializers.FlowerSerializer
     filter_backends = [filters.SearchFilter]
     pagination_class = FlowerPagination
-    search_fields = ['user__first_name', 'user__email', 'category__name', 'color__name']
+    search_fields = ['title', 'content', 'category__name', 'color__name']
     # permission_classes = [IsAuthenticatedOrReadOnly]  
 # class ReviewViewset(viewsets.ModelViewSet):
     
