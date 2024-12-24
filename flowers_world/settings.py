@@ -29,10 +29,10 @@ SECRET_KEY = env("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', '.vercel.app']
+# ALLOWED_HOSTS = ['127.0.0.1', '.vercel.app']
 # ALLOWED_HOSTS = []
 ALLOWED_HOSTS = ["*"]
-CSRF_TRUSTED_ORIGINS = ['https://flower-world.onrender.com','https://*.127.0.0.1']
+CSRF_TRUSTED_ORIGINS = ['https://flowers-world.onrender.com','https://*.127.0.0.1']
 
 
 # Application definition
