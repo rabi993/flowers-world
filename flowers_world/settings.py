@@ -72,7 +72,8 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'flowers_world.urls'
 CORS_ORIGIN_ALLOW_ALL = True
-CSRF_TRUSTED_ORIGINS = ['https://flower-world.onrender.com']
+CSRF_TRUSTED_ORIGINS = ['https://flowers-world.onrender.com']
+
 CORS_ALLOWED_ORIGINS = [
     "http://127.0.0.1:5501",  # or the domain of your frontend
 ]
