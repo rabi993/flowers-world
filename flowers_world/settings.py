@@ -93,7 +93,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'flowers_world.wsgi.app'
+WSGI_APPLICATION = 'flowers_world.wsgi.application'
 
 
 # Database
