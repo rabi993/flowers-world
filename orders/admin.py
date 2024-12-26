@@ -23,7 +23,7 @@ from django.template.loader import render_to_string
 #             email.attach_alternative(email_body, "text/html")
 #             email.send()
 class OrderAdmin(admin.ModelAdmin):
-    list_display = ('buyer_name', 'flower_name', 'delivery_address', 'quantity', 'order_status', 'order_types', 'mobile_no', 'order_date', 'delivery_date', 'cancel')
+    list_display = ('buyer_name', 'flower_name', 'delivery_address', 'quantity', 'order_status', 'order_types', 'mobile_no', 'order_date', 'delivery_date', 'cancel','paid')
 
     def buyer_name(self, obj):
         return obj.buyer.user.first_name

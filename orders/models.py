@@ -58,6 +58,7 @@ class Order(models.Model):
     order_types = models.CharField(choices=ORDER_TYPES, max_length=10, default='Online')
     order_status = models.CharField(choices=ORDER_STATUS, max_length=10, default="Pending")
     cancel = models.BooleanField(default=False)
+    paid = models.BooleanField(default=False)
     # Price and total price fields
     price = models.FloatField(editable=False, default=0.0)
     # Price per unit
