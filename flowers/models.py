@@ -12,7 +12,7 @@ class Flower(models.Model):
     # user = models.ForeignKey(User, on_delete=models.CASCADE)  # Assuming a user can have multiple flowers
     title = models.CharField(max_length=50, unique=True)
     content = models.TextField()
-    image = models.ImageField(upload_to="flowers/images/")
+    image = models.URLField(max_length=500, blank=True, null=True) 
     category = models.ManyToManyField(Category)
     # category = models.ForeignKey(Category, on_delete=models.CASCADE)
     color = models.ManyToManyField(Color)
