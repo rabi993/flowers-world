@@ -98,8 +98,8 @@ class FlowerSerializer(serializers.ModelSerializer):
 
 from . import models
 class ReviewSerializer(serializers.ModelSerializer):
-    reviewer = serializers.CharField(source='reviewer.first_name', read_only=True)  # Corrected
-    flower = serializers.CharField(source='flower.title', read_only=True)  # Corrected
+    # reviewer = serializers.CharField(source='reviewer.first_name', read_only=True)  # Corrected
+    # flower = serializers.CharField(source='flower.title', read_only=True)  # Corrected
 
     class Meta:
         # model = models.Review
