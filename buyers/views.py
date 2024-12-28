@@ -89,31 +89,6 @@ class UserLogoutView(APIView):
         
 
 
-# from rest_framework.permissions import IsAuthenticated
-# from rest_framework.response import Response
-# from rest_framework.views import APIView
-# from rest_framework import status
-
-# class ChangePasswordApiView(APIView):
-#     permission_classes = [IsAuthenticated]
-
-#     def post(self, request):
-#         user = request.user
-#         data = request.data
-
-#         old_password = data.get('old_password')
-#         new_password = data.get('new_password')
-#         confirm_new_password = data.get('confirm_new_password')
-
-#         if not user.check_password(old_password):
-#             return Response({"error": "Old password is incorrect."}, status=status.HTTP_400_BAD_REQUEST)
-        
-#         if new_password != confirm_new_password:
-#             return Response({"error": "New passwords do not match."}, status=status.HTTP_400_BAD_REQUEST)
-        
-#         user.set_password(new_password)
-#         user.save()
-#         return Response({"success": "Password changed successfully."}, status=status.HTTP_200_OK)
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
