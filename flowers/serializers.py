@@ -6,15 +6,14 @@ from colors.models import Color
 class FlowerSerializer(serializers.ModelSerializer):
     # user = serializers.StringRelatedField(many=False)  # Display user as a string (e.g., username)
     
-    # Show category and color names while allowing edits via IDs
     category = serializers.SlugRelatedField(
         queryset=Category.objects.all(),
-        slug_field='name',  # Use the name field for display
+        slug_field='name',  
         many=True
     )
     color = serializers.SlugRelatedField(
         queryset=Color.objects.all(),
-        slug_field='name',  # Use the name field for display
+        slug_field='name',  
         many=True
     )
 

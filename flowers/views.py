@@ -35,9 +35,7 @@ class ReviewViewset(viewsets.ModelViewSet):
     serializer_class = serializers.ReviewSerializer
 
     def get_queryset(self):
-        """
-        Custom queryset to filter reviews based on reviewer_id and flower_id.
-        """
+        
         queryset = super().get_queryset()
         reviewer_id = self.request.query_params.get('reviewer_id')
         flower_id = self.request.query_params.get('flower_id')
