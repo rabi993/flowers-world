@@ -107,6 +107,7 @@ WSGI_APPLICATION = 'flowers_world.wsgi.application'
 #         'NAME': BASE_DIR / 'db.sqlite3',
 #     }
 # }
+
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.postgresql',
@@ -121,7 +122,7 @@ WSGI_APPLICATION = 'flowers_world.wsgi.application'
 DATABASES = {
     'default': dj_database_url.config(
         # Feel free to alter this value to suit your needs.
-        default='postgresql://flowers_world_user:awrEHw32oRfzHWUJPGPfAHkzSxjFIqc8@dpg-ctokr5l2ng1s73bjlfsg-a.oregon-postgres.render.com/flowers_world',
+        default='postgresql://flowers_aoyb_user:xpXmQ7QV5bY3pTlEti1IEIWK57ocns3p@dpg-cton8pdsvqrc73b9tdag-a.oregon-postgres.render.com/flowers_aoyb',
     )
 }
 
