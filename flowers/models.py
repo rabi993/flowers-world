@@ -9,7 +9,8 @@ from django.core.exceptions import ValidationError
 
 
 class Flower(models.Model):
-    # user = models.ForeignKey(User, on_delete=models.CASCADE)  # Assuming a user can have multiple flowers
+    FlowerMalik = models.CharField(max_length=50, blank=True, null=True,unique=False)
+
     title = models.CharField(max_length=50, unique=True)
     content = models.TextField()
     image = models.URLField(max_length=500, blank=True, null=True) 
@@ -24,7 +25,7 @@ class Flower(models.Model):
             raise ValidationError("Price cannot be negative")
 
     def __str__(self):
-        return self.title 
+        return self.title
 
     class Meta:
         # unique_together = ('title', 'category')

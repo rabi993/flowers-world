@@ -121,7 +121,7 @@ WSGI_APPLICATION = 'flowers_world.wsgi.application'
 DATABASES = {
     'default': dj_database_url.config(
         # Feel free to alter this value to suit your needs.
-        default='postgresql://flowersworld_user:6quo50FzzFEgsMUwRLowAcQwN3XqQFZs@dpg-ctl3tmogph6c739i0fig-a.oregon-postgres.render.com/flowersworld',
+        default='postgresql://flowers_world_user:awrEHw32oRfzHWUJPGPfAHkzSxjFIqc8@dpg-ctokr5l2ng1s73bjlfsg-a.oregon-postgres.render.com/flowers_world',
     )
 }
 

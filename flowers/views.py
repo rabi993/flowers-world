@@ -13,13 +13,18 @@ class FlowerPagination(pagination.PageNumberPagination):
     max_page_size = 100
 
 # from rest_framework.permissions import IsAuthenticatedOrReadOnly
+from django.contrib.auth.models import User
+from django.shortcuts import get_object_or_404
+from rest_framework import  status
+
 class FlowerViewset(viewsets.ModelViewSet):
     queryset = models.Flower.objects.all()
     serializer_class = serializers.FlowerSerializer
     filter_backends = [filters.SearchFilter]
     pagination_class = FlowerPagination
     search_fields = ['title', 'content', 'category__name', 'color__name']
-    # permission_classes = [IsAuthenticatedOrReadOnly]  
+    # permission_classes = [IsAuthenticatedOrReadOnly]
+
 
 
 
