@@ -17,9 +17,7 @@ class OrderViewSet(ModelViewSet):
     serializer_class = OrderSerializer
 
     def get_queryset(self):
-        """
-        Custom queryset to filter orders based on query parameters.
-        """
+        
         queryset = super().get_queryset()
 
         # Extract query parameters
@@ -37,9 +35,7 @@ class OrderViewSet(ModelViewSet):
         return queryset
 
     def create(self, request, *args, **kwargs):
-        """
-        Override the create method to handle flower_id and buyer_id from query parameters.
-        """
+        
         # Get query parameters
         flower_id = self.request.query_params.get('flower_id')
         buyer_id = self.request.query_params.get('buyer_id')

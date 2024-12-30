@@ -36,10 +36,7 @@ class Order(models.Model):
     total_price = models.FloatField(editable=False, default=0.0)  # Temporary default value
  
     def clean(self):
-            """
-            Validate the order before saving.
-            Ensure that the ordered quantity does not exceed the available stock.
-            """
+            
             if self.quantity <= 0:
                 raise ValidationError("Quantity must be at least 1.")
 
@@ -49,9 +46,7 @@ class Order(models.Model):
                 )
 
     def save(self, *args, **kwargs):
-            """
-            Override the save method to update the available stock of the flower.
-            """
+            
             # Validate before saving
             self.clean()
 
@@ -89,9 +84,7 @@ class Order(models.Model):
                 email.send()
 
     def delete(self, *args, **kwargs):
-            """
-            Override the delete method to restore the flower's available quantity.
-            """
+            
             # Restore the available quantity of the flower
             self.flower.available += self.quantity
             self.flower.save()
