@@ -8,7 +8,7 @@ from rest_framework import filters, pagination
 
 # Create your views here.
 class FlowerPagination(pagination.PageNumberPagination):
-    page_size = 10 # items per page
+    page_size = 25 # items per page
     page_size_query_param = page_size
     max_page_size = 100
 
