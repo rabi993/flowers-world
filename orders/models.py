@@ -45,43 +45,83 @@ class Order(models.Model):
                     f"Only {self.flower.available} units of '{self.flower.title}' are available."
                 )
 
-    def save(self, *args, **kwargs):
+    # def save(self, *args, **kwargs):
             
-            # Validate before saving
-            self.clean()
+    #         # Validate before saving
+    #         self.clean()
 
-            self.price = self.flower.price
+    #         self.price = self.flower.price
 
-            # Calculate the total price
-            self.total_price = self.price * self.quantity
+    #         # Calculate the total price
+    #         self.total_price = self.price * self.quantity
 
-            # Reduce the available stock of the flower
+    #         # Reduce the available stock of the flower
+    #         self.flower.available -= self.quantity
+    #         self.flower.save()
+
+    #         is_new = self.pk is None  # Check if this is a new order
+    #         previous_status = None
+    #         if not is_new:
+    #             previous_status = Order.objects.get(pk=self.pk).order_status
+
+    #         # Save the order
+    #         super().save(*args, **kwargs)
+
+    #         if is_new or previous_status != self.order_status:
+    #             email_subject = f"Your Order Status: {self.order_status}"
+    #             email_body = render_to_string('admin_email.html', {
+    #                 'user': self.buyer.user,
+    #                 'order_id': self.id,
+    #                 'status': self.order_status,
+    #             })
+
+    #             email = EmailMultiAlternatives(
+    #                 email_subject,
+    #                 '',
+    #                 to=[self.buyer.user.email]
+    #             )
+    #             email.attach_alternative(email_body, "text/html")
+    #             email.send()
+
+    def save(self, *args, **kwargs):
+        # Check if the order is new
+        is_new = self.pk is None
+
+        # Validate before saving
+        self.clean()
+
+        self.price = self.flower.price
+        self.total_price = self.price * self.quantity
+
+        # Reduce the available stock of the flower only for new orders
+        if is_new:
+            if self.flower.available < self.quantity:
+                raise ValidationError(
+                    f"Only {self.flower.available} units of '{self.flower.title}' are available."
+                )
             self.flower.available -= self.quantity
             self.flower.save()
 
-            is_new = self.pk is None  # Check if this is a new order
-            previous_status = None
-            if not is_new:
-                previous_status = Order.objects.get(pk=self.pk).order_status
+        # Save the order
+        super().save(*args, **kwargs)
 
-            # Save the order
-            super().save(*args, **kwargs)
+        # Send email notification if the order status changes
+        if not is_new and self.order_status != Order.objects.get(pk=self.pk).order_status:
+            email_subject = f"Your Order Status: {self.order_status}"
+            email_body = render_to_string('admin_email.html', {
+                'user': self.buyer.user,
+                'order_id': self.id,
+                'status': self.order_status,
+            })
 
-            if is_new or previous_status != self.order_status:
-                email_subject = f"Your Order Status: {self.order_status}"
-                email_body = render_to_string('admin_email.html', {
-                    'user': self.buyer.user,
-                    'order_id': self.id,
-                    'status': self.order_status,
-                })
+            email = EmailMultiAlternatives(
+                email_subject,
+                '',
+                to=[self.buyer.user.email]
+            )
+            email.attach_alternative(email_body, "text/html")
+            email.send()
 
-                email = EmailMultiAlternatives(
-                    email_subject,
-                    '',
-                    to=[self.buyer.user.email]
-                )
-                email.attach_alternative(email_body, "text/html")
-                email.send()
 
     def delete(self, *args, **kwargs):
             
