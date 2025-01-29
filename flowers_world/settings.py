@@ -32,7 +32,7 @@ DEBUG = True
 # ALLOWED_HOSTS = ['127.0.0.1', '.vercel.app']
 # ALLOWED_HOSTS = []
 ALLOWED_HOSTS = ["*"]
-CSRF_TRUSTED_ORIGINS = ['https://flowers-world.onrender.com','https://*.127.0.0.1']
+CSRF_TRUSTED_ORIGINS = ['https://flowers-world-unkt.onrender.com','https://*.127.0.0.1']
 
 
 # Application definition
@@ -72,11 +72,11 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'flowers_world.urls'
 CORS_ORIGIN_ALLOW_ALL = True
-CSRF_TRUSTED_ORIGINS = ['https://flowers-world.onrender.com']
+CSRF_TRUSTED_ORIGINS = ['https://flowers-world-unkt.onrender.com']
 
 CORS_ALLOWED_ORIGINS = [
     "http://127.0.0.1:5501",
-    "https://flowers-world.onrender.com",  # or the domain of your frontend
+    "https://flowers-world-unkt.onrender.com",  # or the domain of your frontend
 ]
 
 TEMPLATES = [
