@@ -101,12 +101,12 @@ WSGI_APPLICATION = 'flowers_world.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
 
 # DATABASES = {
 #     'default': {
@@ -119,12 +119,12 @@ WSGI_APPLICATION = 'flowers_world.wsgi.application'
 #     }
 # }
 
-DATABASES = {
-    'default': dj_database_url.config(
-        # Feel free to alter this value to suit your needs.
-        default='postgresql://flowers_aoyb_user:xpXmQ7QV5bY3pTlEti1IEIWK57ocns3p@dpg-cton8pdsvqrc73b9tdag-a.oregon-postgres.render.com/flowers_aoyb',
-    )
-}
+# DATABASES = {
+#     'default': dj_database_url.config(
+#         # Feel free to alter this value to suit your needs.
+#         default='postgresql://flowers_aoyb_user:xpXmQ7QV5bY3pTlEti1IEIWK57ocns3p@dpg-cton8pdsvqrc73b9tdag-a.oregon-postgres.render.com/flowers_aoyb',
+#     )
+# }
 
 REST_FRAMEWORK = {
     'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
