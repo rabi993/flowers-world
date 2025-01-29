@@ -32,7 +32,7 @@ DEBUG = True
 # ALLOWED_HOSTS = ['127.0.0.1', '.vercel.app']
 # ALLOWED_HOSTS = []
 ALLOWED_HOSTS = ["*"]
-CSRF_TRUSTED_ORIGINS = ['https://flowers-world.onrender.com','https://*.127.0.0.1']
+CSRF_TRUSTED_ORIGINS = ['https://flowers-world-unkt.onrender.com','https://*.127.0.0.1']
 
 
 # Application definition
@@ -72,11 +72,11 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'flowers_world.urls'
 CORS_ORIGIN_ALLOW_ALL = True
-CSRF_TRUSTED_ORIGINS = ['https://flowers-world.onrender.com']
+CSRF_TRUSTED_ORIGINS = ['https://flowers-world-unkt.onrender.com']
 
 CORS_ALLOWED_ORIGINS = [
     "http://127.0.0.1:5501",
-    "https://flowers-world.onrender.com",  # or the domain of your frontend
+    "https://flowers-world-unkt.onrender.com",  # or the domain of your frontend
 ]
 
 TEMPLATES = [
@@ -101,28 +101,28 @@ WSGI_APPLICATION = 'flowers_world.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
-
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': env("DB_NAME"),
-        'USER': env("DB_USER"),
-        'PASSWORD': env("DB_PASSWORD"),
-        'HOST': env("DB_HOST"),
-        'PORT': env("DB_PORT")
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
 # DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': env("DB_NAME"),
+#         'USER': env("DB_USER"),
+#         'PASSWORD': env("DB_PASSWORD"),
+#         'HOST': env("DB_HOST"),
+#         'PORT': env("DB_PORT")
+#     }
+# }
+
+# DATABASES = {
 #     'default': dj_database_url.config(
 #         # Feel free to alter this value to suit your needs.
-#         default='postgresql://flowers_898y_user:MuEOWFlnVoEYwItJUaoMfHl0AJD4tkIz@dpg-cud4gn52ng1s73bclva0-a.oregon-postgres.render.com/flowers_898y',
+#         default='postgresql://flowers_aoyb_user:xpXmQ7QV5bY3pTlEti1IEIWK57ocns3p@dpg-cton8pdsvqrc73b9tdag-a.oregon-postgres.render.com/flowers_aoyb',
 #     )
 # }
 
