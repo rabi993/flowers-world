@@ -70,7 +70,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'flowers_world.urls'
+ROOT_URLCONF = 'flowers_world-unkt.urls'
 CORS_ORIGIN_ALLOW_ALL = True
 CSRF_TRUSTED_ORIGINS = ['https://flowers-world-unkt.onrender.com']
 
