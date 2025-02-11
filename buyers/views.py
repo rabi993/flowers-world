@@ -34,7 +34,7 @@ class UserRegistrationApiView(APIView):
             uid = urlsafe_base64_encode(force_bytes(user.pk))
             print("uid ", uid)
             # confirm_link = f"https://flowers-world-kc1aq9fen-rabiuls-projects-ff75cd6d.vercel.app/buyers/active/{uid}/{token}"
-            confirm_link = f"https://flowers-world-unkt.onrender.com/buyers/active/{uid}/{token}"
+            confirm_link = f"https://flowers-world-two.vercel.app/buyers/active/{uid}/{token}"
             
             email_subject = "Confirm Your Email"
             email_body = render_to_string('confirm_email.html', {'confirm_link' : confirm_link})
@@ -56,9 +56,9 @@ def activate(request, uid64, token):
     if user is not None and default_token_generator.check_token(user, token):
         user.is_active = True
         user.save()
-        return redirect('https://flowers-world-unkt.onrender.com/login.html')
+        return redirect('https://flowers-world-two.vercel.app/login.html')
     else:
-        return redirect('https://flowers-world-unkt.onrender.com/registration.html')
+        return redirect('https://flowers-world-two.vercel.app/registration.html')
     
 
 class UserLoginApiView(APIView):
