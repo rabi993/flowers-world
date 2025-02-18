@@ -57,6 +57,7 @@ INSTALLED_APPS = [
     'services',
     'categories',
     'colors',
+    'payment',
 ]
 
 MIDDLEWARE = [
@@ -77,6 +78,7 @@ CORS_ORIGIN_ALLOW_ALL = True
 
 CORS_ALLOWED_ORIGINS = [
     "http://127.0.0.1:5503",
+    "http://localhost:5503",
     "https://flowers-world-two.vercel.app",  # or the domain of your frontend
 ]
 
