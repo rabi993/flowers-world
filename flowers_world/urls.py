@@ -18,6 +18,7 @@ urlpatterns = [
     path('categories/', include('categories.urls')),
     path('colors/', include('colors.urls')),
     path('payment/', include('payment.urls')),
+    path('newsletter/', include('newsletter.urls')),
 ]
 
 

@@ -58,6 +58,7 @@ INSTALLED_APPS = [
     'categories',
     'colors',
     'payment',
+    'newsletter',
 ]
 
 MIDDLEWARE = [
